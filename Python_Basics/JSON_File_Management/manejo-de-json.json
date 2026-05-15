@@ -1,0 +1,48 @@
+[
+	 // Primer Pókemon de la lista
+   {
+      "name":"Pikachu",
+      "type":"Electric",
+      "level":54,
+      "weight_kg":6.0,
+      "is_shiny":false,
+      "held_item":null,
+      "skills":[
+         "Thunder Shock",
+         "Quick Attack",
+         "Thunderbolt",
+         "Volt Tackle"
+      ],
+      "stats":{
+         "hp":35,
+         "attack":55,
+         "defense":40,
+         "sp_attack":50,
+         "sp_defense":50,
+         "speed":90
+      }
+   },
+   // Segundo Pókemon de la lista
+   {
+      "name":"Charmander",
+      "type":"Fire",
+      "level":8,
+      "weight_kg":8.5,
+      "is_shiny":true,
+      "held_item":"Charcoal",
+      "skills":[
+         "Ember",
+         "Scratch",
+         "Tackle",
+         "Smokescreen"
+      ],
+      "stats":{
+         "hp":39,
+         "attack":52,
+         "defense":43,
+         "sp_attack":60,
+         "sp_defense":50,
+         "speed":65
+      }
+   }
+]
