@@ -7,10 +7,10 @@ FILE_NAME = "students.csv"
 FIELD_NAMES = [
     "full_name",
     "section",
-    "spanish",
-    "english",
-    "social_studies",
-    "science",
+    "español",
+    "inglés",
+    "estudios_sociales",
+    "ciencias",
 ]
 
 
@@ -45,10 +45,10 @@ def import_students_from_csv():
                 student = {
                     "full_name": row["full_name"],
                     "section": row["section"],
-                    "spanish": float(row["spanish"]),
-                    "english": float(row["english"]),
-                    "social_studies": float(row["social_studies"]),
-                    "science": float(row["science"]),
+                    "español": float(row["español"]),
+                    "inglés": float(row["inglés"]),
+                    "estudios_sociales": float(row["estudios_sociales"]),
+                    "ciencias": float(row["ciencias"]),
                 }
 
                 students.append(student)
