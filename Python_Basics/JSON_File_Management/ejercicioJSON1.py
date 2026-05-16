@@ -2,10 +2,23 @@ import json
 
 
 def load_pokemon(file_path):
-    with open(file_path, "r", encoding="utf-8") as json_file:
-        pokemon_list = json.load(json_file)
+    try:
+        with open(file_path, "r", encoding="utf-8") as json_file:
+            data = json.load(json_file)
 
-    return pokemon_list
+            if isinstance(data, list):
+                return data
+
+            if isinstance(data, dict):
+                return [data]
+
+            return []
+
+    except FileNotFoundError:
+        return []
+
+    except json.JSONDecodeError:
+        return []
 
 
 def save_pokemon(file_path, data):
@@ -18,20 +31,13 @@ def save_pokemon(file_path, data):
 
 
 def type_stats():
-    hp = int(input("HP: "))
-    attack = int(input("Ataque: "))
-    defense = int(input("Defensa: "))
-    sp_attack = int(input("Special attack: "))
-    sp_defense = int(input("Special defense: "))
-    speed = int(input("Speed: "))
-
     stats = {
-        "hp": hp,
-        "attack": attack,
-        "defense": defense,
-        "sp_attack": sp_attack,
-        "sp_defense": sp_defense,
-        "speed": speed
+        "hp": int(input("HP: ")),
+        "attack": int(input("Ataque: ")),
+        "defense": int(input("Defensa: ")),
+        "sp_attack": int(input("Special attack: ")),
+        "sp_defense": int(input("Special defense: ")),
+        "speed": int(input("Speed: "))
     }
 
     return stats
