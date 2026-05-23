@@ -1,6 +1,6 @@
 import re
 
-SUBJECTS = ["español", "inglés", "estudios_sociales", "ciencias"]
+SUBJECTS = ["spanish", "english", "social_studies", "science"]
 
 def is_valid_name(name):
     return bool(name.strip() and not any(char.isdigit() for char in name))
@@ -77,10 +77,10 @@ def add_students(students):
         student = {
             "full_name": full_name,
             "section": section,
-            "español": get_valid_grade("español"),
-            "inglés" : get_valid_grade("inglés"),
-            "estudios_sociales" : get_valid_grade("estudios sociales"),
-            "ciencias" : get_valid_grade("ciencias"),
+            "spanish": get_valid_grade("spanish"),
+            "english" : get_valid_grade("english"),
+            "social_studies" : get_valid_grade("social_studies"),
+            "science" : get_valid_grade("science"),
         }
         students.append(student)
         print("El estudiante fue agregado de manera satisfactoria")
@@ -94,10 +94,10 @@ def show_students(students):
         print("\n----------------------")
         print(f"Nombre: {student['full_name']}")
         print(f"Seccion: {student['section']}")
-        print(f"Español: {student['español']}")
-        print(f"Inglés: {student['inglés']}")
-        print(f"Estudios Sociales: {student['estudios_sociales']}")
-        print(f"ciencias: {student['ciencias']}")
+        print(f"Español: {student['spanish']}")
+        print(f"Inglés: {student['english']}")
+        print(f"Estudios Sociales: {student['social_studies']}")
+        print(f"ciencias: {student['science']}")
         print(f"promedio: {calculate_average(student):.2f}")
 
 def show_top_three_students(students):

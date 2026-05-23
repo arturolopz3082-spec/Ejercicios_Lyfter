@@ -16,7 +16,7 @@ def show_menu():
     print("3. Muestra el top 3 de estudiantes")
     print("4. Muestra el promedio general")
     print("5. Exporta estudiantes a CSV")
-    print("6. Imports estudiantes de un CSV")
+    print("6. Importa estudiantes de un CSV")
     print("7. Borra un estudiante")
     print("8. Muestra estudiantes reprobados")
     print("9. Exit")
