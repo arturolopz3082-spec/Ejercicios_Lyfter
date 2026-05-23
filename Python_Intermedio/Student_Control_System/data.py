@@ -7,10 +7,10 @@ FILE_NAME = "students.csv"
 FIELD_NAMES = [
     "full_name",
     "section",
-    "spanish",
-    "english",
-    "social_studies",
-    "science",
+    "español",
+    "inglés",
+    "estudios_sociales",
+    "ciencias",
 ]
 
 
@@ -45,23 +45,23 @@ def import_students_from_csv():
                 student = {
                     "full_name": row["full_name"],
                     "section": row["section"],
-                    "spanish": float(row["spanish"]),
-                    "english": float(row["english"]),
-                    "social_studies": float(row["social_studies"]),
-                    "science": float(row["science"]),
+                    "español": float(row["español"]),
+                    "inglés": float(row["inglés"]),
+                    "estudios_sociales": float(row["estudios_sociales"]),
+                    "ciencias": float(row["ciencias"]),
                 }
 
                 students.append(student)
 
-        print("Se extrajo de manera correcta los alumnos del archivo.")
+        print("Students imported successfully.")
         return students
 
     except OSError:
-        print("Hubo un error al importar el archivo")
+        print("An error occurred while importing the file.")
         return []
     except KeyError:
-        print("El archivo CSV no tiene el formato correcto.")
+        print("The CSV file does not have the correct format.")
         return []
     except ValueError:
-        print("El archivo CSV no tiene calificaciones válidas")
+        print("The CSV file contains invalid grades.")
         return []
