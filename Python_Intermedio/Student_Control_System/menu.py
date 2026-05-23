@@ -1,10 +1,5 @@
 from actions import (
-    add_students,
-    show_students,
-    show_top_three_students,
-    show_general_average,
-    delete_student,
-    show_failed_students,
+    create_student
 )
 from data import export_students_to_csv, import_students_from_csv
 
@@ -36,9 +31,21 @@ def run_menu(students):
     while True:
         show_menu()
         option = get_menu_option()
+        if option == 1:
+            print("Se eligió crear un estudiante")
+            create_student(students)
+        elif option == 9:
+            print("Adiós!")
+            break
+
+'''
+def run_menu(students):
+    while True:
+        show_menu()
+        option = get_menu_option()
 
         if option == 1:
-            add_students(students)
+            create_student(students)
         elif option == 2:
             show_students(students)
         elif option == 3:
@@ -59,3 +66,4 @@ def run_menu(students):
         elif option == 9:
             print("Adiós!")
             break
+'''

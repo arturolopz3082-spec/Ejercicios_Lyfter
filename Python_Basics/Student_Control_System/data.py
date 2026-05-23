@@ -31,8 +31,9 @@ def export_students_to_csv(students):
 
 
 def import_students_from_csv():
+    print("Esto va a eliminar los alumnos creados sin guardar.")
     if not os.path.exists(FILE_NAME):
-        print("There is no previously exported CSV file.")
+        print("No hay un archivo CSV que se pueda cargar")
         return []
 
     students = []

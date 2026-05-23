@@ -2,27 +2,39 @@ import re
 
 SUBJECTS = ["español", "inglés", "estudios_sociales", "ciencias"]
 
+class Student:
+    def __init__(self, name, español, inglés, estudios_sociales, ciencias, section):
+        self.name = name
+        self.español = español
+        self.inglés = inglés
+        self.estudios_sociales = estudios_sociales
+        self.ciencias = ciencias
+        self.section = section
+
+def create_student(students_list):
+    name = get_valid_name()
+    español = get_valid_grade("español")
+    inglés = get_valid_grade("inglés")
+    estudios_sociales = get_valid_grade("estudios_sociales")
+    ciencias = get_valid_grade("ciencias")
+    section = get_valid_section()
+    student = Student(name, español, inglés, estudios_sociales, ciencias, section)
+    print(student.__dict__)
+
+
+
 def is_valid_name(name):
     return bool(name.strip() and not any(char.isdigit() for char in name))
 
-def is_valid_section(section):
-    return bool(re.fullmatch(r"\d{1,2}[A-Z]", section))
-
-def student_exists(students, full_name, section):
-    for student in students:
-        if(
-            student["full_name"].lower() == full_name.lower()
-            and student["section"].upper() == section.upper()
-        ):
-            return True
-    return False
-
 def get_valid_name():
     while True:
-        full_name = input("Ingrese el nombre de tu estudiante: ").strip()
+        full_name = input("Ingrese el nombre de tu estudiante: ")
         if is_valid_name(full_name):
             return full_name
-        print("Nombre inválido, no puede contener números")
+        print("Nombre no válido")
+
+def is_valid_section(section):
+    return bool(re.fullmatch(r"\d{1,2}[A-Z]", section))
 
 def get_valid_section():
     while True:
@@ -44,6 +56,17 @@ def get_valid_grade(subject):
             print("La calificación debe estar entre 0 y 100.")
         except ValueError:
             print("ingrese un número, no una letra")
+
+'''
+def student_exists(students, full_name, section):
+    for student in students:
+        if(
+            student["full_name"].lower() == full_name.lower()
+            and student["section"].upper() == section.upper()
+        ):
+            return True
+    return False
+
 
 def calculate_average(student):
     total = 0
@@ -190,3 +213,4 @@ def show_failed_students(students):
 
     if not found_failed_students:
         print("No hay estudiantes reprobados.")
+'''
