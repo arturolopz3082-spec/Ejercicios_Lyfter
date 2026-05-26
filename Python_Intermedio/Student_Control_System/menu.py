@@ -57,5 +57,5 @@ def run_menu(students):
         elif option == 8:
             show_failed_students(students)
         elif option == 9:
-            print("Adiós!")
+            print("Adiós")
             break
