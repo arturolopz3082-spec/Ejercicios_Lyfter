@@ -36,12 +36,12 @@ class Square(Shape):
 class Rectangle(Shape):
     def __init__(self, base, height):
         self.base = base
-        self.heigh = height
+        self.height = height
     def calculate_area(self):
-        return self.base * self.heigh
+        return self.base * self.height
 
     def calculate_perimeter(self):
-        return 2 * (self.base + self.heigh)
+        return 2 * (self.base + self.height)
 
 def main():
     circle = Circle(10)
