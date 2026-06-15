@@ -1,5 +1,0 @@
-Algoritmo 				Big O		Explicación
-bubble_sort				O(n**2)	Usa ciclos anidados para comparar elementos varias veces
-print_number_times_2		O(n)		Recorre la lista nada más una vez
-check_if_list_have_an equal 	O(n x m)	Compara cada elemento de list_a contra cada elemento de list_b
-generate_list_trios			O(n x m x p)	Genera toas las combinaciones entre tres listas
