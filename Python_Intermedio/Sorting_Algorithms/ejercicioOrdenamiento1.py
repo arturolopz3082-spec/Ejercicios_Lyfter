@@ -1,5 +1,6 @@
 def bubble_sort(arr):
-
+    if not isinstance(arr, list):
+        raise TypeError("Bubble sort nada más acepta listas")
     n = len(arr)
     for i in range(n):
         swapped = False
@@ -9,6 +10,7 @@ def bubble_sort(arr):
                 swapped = True
         if not swapped:
             break
+    return arr
 
 x = [9,8,0,5,4,3,7]
 
