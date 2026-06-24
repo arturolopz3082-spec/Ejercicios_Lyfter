@@ -17,12 +17,12 @@ class TestBubbleSort(unittest.TestCase):
         self.assertEqual(result, expected_result)
 
     def test_works_with_empty_list(self):
-            result = bubble_sort([])
-            self.assertEqual(result, [])
+        result = bubble_sort([])
+        self.assertEqual(result, [])
 
     def test_does_not_work_with_empty_parameter(self):
-            with self.assertRaises(TypeError):
-                bubble_sort("not a list")
+        with self.assertRaises(TypeError):
+            bubble_sort("not a list")
 
 if __name__ == '__main__':
     unittest.main()

@@ -15,10 +15,10 @@ class TestSumList(unittest.TestCase):
         result = sum_list([4,6,2,29])
         self.assertEqual(result, expected)
 
-    def test_sum_list_with_sum_wrong(self):
-        expected = 49
-        result = sum_list([4,6,2,29])
-        self.assertNotEqual(result, expected)
+    def test_sum_list_with_negative_numbers(self):
+        expected = -15
+        result = sum_list([-4,-6-5])
+        self.assertEqual(result, expected)
 
     def test_sum_with_empty_list(self):
         expected = "La lista está vacía"
@@ -80,6 +80,7 @@ class TestPrimeNumbers(unittest.TestCase):
         self.assertIsInstance(return_prime_number([1,4,6,7,13,9,67]), list)
 
     def test_prime_numbers_false(self):
-        self.assertFalse(return_prime_number([1,4,6,8,9,10]))
+        result = return_prime_number([1,4,6,8,9,10])
+        self.assertEqual(result, [])
 
 
