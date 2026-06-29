@@ -11,6 +11,6 @@ def contarLetras(text):
             upperCase += 1
         elif element.islower():
             lowerCase += 1
-    return print(f"There is {upperCase} uppercase letters and {lowerCase} lowercase letters.")
+    return f"There is {upperCase} uppercase letters and {lowerCase} lowercase letters."
 
-contarLetras(string1)
+print(contarLetras(string1))
