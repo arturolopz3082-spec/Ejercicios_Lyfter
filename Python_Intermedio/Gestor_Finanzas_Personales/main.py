@@ -1,6 +1,6 @@
-from Python_Intermedio.Gestor_Finanzas_Personales.interfaces import deploy_app
+from interfaces import deploy_app
 from logic import FinanceManager
-from persistance import save_finance_info, export_csv, load_finance_info
+from persistence import save_finance_info, export_csv, load_finance_info
 
 def main():
     manager = FinanceManager()

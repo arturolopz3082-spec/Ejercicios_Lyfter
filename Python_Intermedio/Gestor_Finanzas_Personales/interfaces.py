@@ -7,8 +7,7 @@ pero no contiene reglas de negocio propias.
 import FreeSimpleGUI as sg
 from datetime import datetime
 
-from logic import FinanceManager, Movement
-from persistance import save_finance_info, export_csv
+from logic import FinanceManager, Movement, validate_date
 
 # ─────────────────────────── Tema visual ────────────────────────────
 
@@ -123,6 +122,12 @@ def add_category_window(manager: FinanceManager) -> bool:
     window.close()
     return save
 
+def _obtain_row_colors(manager: FinanceManager, lista=None) -> list:
+    font = lista if lista is not None else manager.movements
+    return [
+        (i, manager.obtain_color_category(m.category))
+        for i, m in enumerate(font)
+    ]
 
 def _movement_window(manager: FinanceManager, type: str) -> bool:
     """Formulario genérico para Ingreso o Gasto."""
@@ -157,7 +162,7 @@ def _movement_window(manager: FinanceManager, type: str) -> bool:
                 title=values["-MOV-TITULO-"],
                 amount_str=values["-MOV-MONTO-"],
                 category=values["-MOV-CAT-"],
-                type=type,
+                kind=type,
                 date_str=values["-MOV-FECHA-"],
             )
             if ok:
@@ -239,10 +244,24 @@ def _principal_layout(manager: FinanceManager) -> list:
                         background_color=PANEL_COLOR),
                 sg.Input("", key="-FEC-INI-", size=(12, 1),
                          background_color=FIELD_COLOR, text_color=TEXT_COLOR),
+                sg.CalendarButton(
+                    "Fecha Inicio",
+                    target="-FEC-INI-",
+                    format="%d/%m/%Y",
+                    button_color=(TEXT_COLOR, PANEL_COLOR),
+                    border_width=0
+                ),
                 sg.Text("Hasta:", text_color=SEC_TEXT_COLOR,
                         background_color=PANEL_COLOR),
                 sg.Input("", key="-FEC-FIN-", size=(12, 1),
                          background_color=FIELD_COLOR, text_color=TEXT_COLOR),
+                sg.CalendarButton(
+                    "Fecha Final",
+                    target="-FEC-FIN-",
+                    format="%d/%m/%Y",
+                    button_color=(TEXT_COLOR, PANEL_COLOR),
+                    border_width=0
+                ),
                 _btn("Filtrar", "-FILTRAR-", ACCENT_COLOR, width=10),
                 _btn("Ver todos", "-VER-TODOS-", SEC_TEXT_COLOR, width=10),
             ]
@@ -266,6 +285,7 @@ def _principal_layout(manager: FinanceManager) -> list:
             alternating_row_color="#1A1A2E",
             expand_x=True,
             enable_events=True,
+            row_colors=_obtain_row_colors(manager)
         )],
 
         [_divider()],
@@ -285,7 +305,8 @@ def _principal_layout(manager: FinanceManager) -> list:
 def _update_table(window: sg.Window, manager: FinanceManager,
                   table_list=None) -> None:
     rows = manager.movement_rows(table_list)
-    window["-TABLA-"].update(values=rows)
+    colors = _obtain_row_colors(manager, table_list)
+    window["-TABLA-"].update(values=rows, row_colors=colors)
 
 
 def _update_summary(window: sg.Window, manager: FinanceManager) -> None:
@@ -304,9 +325,9 @@ def deploy_app(manager: FinanceManager,
     fn_exportar(gestor) se llama al presionar Exportar CSV.
     """
     if fn_save is None:
-        fn_save = save_finance_info
+        raise ValueError("fn_save es requerido")
     if fn_export is None:
-        fn_export = export_csv
+        raise ValueError("fn_export es requerido")
 
     window = sg.Window(
         "Gestor de Finanzas Personales",
@@ -350,14 +371,31 @@ def deploy_app(manager: FinanceManager,
             if not begin_date or not end_date:
                 _show_error("Ingresa ambas fechas para filtrar.")
             else:
-                filtered = manager.filter_by_range(begin_date, end_date)
-                _update_table(window, manager, filtered)
+                error_begin = validate_date(begin_date, enable_future=True)
+                error_end = validate_date(end_date, enable_future=True)
+                if error_begin:
+                    _show_error(f"Fecha de inicio inválida_ {error_begin}")
+                elif error_end:
+                    _show_error(f"Fecha de fin inválida_ {error_end}")
+                elif datetime.strptime(begin_date, "%d/%m/%Y") > datetime.strptime(end_date, "%d/%m/%Y"):
+                    _show_error("La fecha de inicio no puede ser posterior a la fecha fin")
+                else:
+                    filtered = manager.filter_by_range(begin_date, end_date)
+                    if not filtered:
+                        _show_error("No hay movimientos en ese rango de fechas")
+                    else:
+                        _update_table(window, manager, filtered)
 
         elif event == "-VER-TODOS-":
             _update_table(window, manager)
+            window["-FEC-INI-"].update("")
+            window["-FEC-FIN-"].update("")
 
         elif event == "-BTN-CSV-":
-            ruta = fn_export(manager)
-            _show_ok(f"CSV exportado exitosamente:\n{ruta}")
+            try:
+                ruta = fn_export(manager)
+                _show_ok(f"CSV exportado exitosamente:\n{ruta}")
+            except OSError as e:
+                print(f"Error al guardar: {e}")
 
     window.close()

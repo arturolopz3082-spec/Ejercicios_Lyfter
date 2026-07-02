@@ -21,19 +21,19 @@ class Movement:
     TYPE_EXPENSE = 'Gasto'
     VALID_TYPES = [TYPE_INCOME, TYPE_EXPENSE]
 
-    def __init__(self, title, amount, category, type,
+    def __init__(self, title, amount, category, kind,
                  movement_date : str | None = None):
         self.title = title
         self.amount = amount
         self.category = category
-        self.type = type
+        self.kind = kind
         self.movement_date = movement_date or date.today().strftime('%d/%m/%Y')
 
     def to_dict(self) -> dict:
         return { 'title': self.title,
                  'amount': self.amount,
                  'category': self.category,
-                 'type': self.type,
+                 'kind': self.kind,
                  'movement_date': str(self.movement_date)
                  }
 
@@ -43,13 +43,13 @@ class Movement:
             title= data['title'],
             amount= data['amount'],
             category= data['category'],
-            type= data['type'],
+            kind= data['kind'],
             movement_date= data.get('movement_date')
         )
 
     def __repr__(self):
         return (f'Movement(title={self.title}, amount={self.amount}, category={self.category}, '
-                f'type={self.type}, movement_date={self.movement_date})')
+                f'kind={self.kind}, movement_date={self.movement_date})')
 
 
 def validate_title(title) -> str | None:
@@ -117,15 +117,15 @@ class FinanceManager:
         for c in self.categories:
             if c.name.lower() == name.strip().lower():
                 return c.color
-        return "#FFFFF"
+        return "#FFFFFF"
 
     def add_movement(self, title: str, amount_str: str,
-                     category: str, type: str,
+                     category: str, kind: str,
                      date_str: str | None = None) -> tuple[bool, str]:
         if not self.categories:
             return False, "Primero debes agregar al menos una categoría."
-        if type not in Movement.VALID_TYPES:
-            return False, f"Tipo inválido: {type!r}."
+        if kind not in Movement.VALID_TYPES:
+            return False, f"Tipo inválido: {kind!r}."
         if not self.existing_category(category):
             return False, f"La categoría '{category}' no existe."
 
@@ -133,7 +133,7 @@ class FinanceManager:
         if error:
             return False, error
 
-        amount_str, error = validate_amount(amount_str)
+        amount, error = validate_amount(amount_str)
         if error:
             return False, error
 
@@ -142,9 +142,9 @@ class FinanceManager:
         if error_date:
             return False, error_date
 
-        final_amount = amount_str if type == Movement.TYPE_INCOME else -abs(amount_str)
-        self.movements.append(Movement(title.strip(), final_amount, category, type, date_str))
-        return True, f"{type} agregado correctamente."
+        final_amount = amount if kind == Movement.TYPE_INCOME else -abs(amount)
+        self.movements.append(Movement(title.strip(), final_amount, category, kind, date_str))
+        return True, f"{kind} agregado correctamente."
 
     def total_income(self) -> float:
         return sum(m.amount for m in self.movements if m.amount > 0)
@@ -183,6 +183,6 @@ class FinanceManager:
                 m.title,
                 f"{symbol}{m.amount:,.2f}",
                 m.category,
-                m.type,
+                m.kind,
             ])
         return rows
