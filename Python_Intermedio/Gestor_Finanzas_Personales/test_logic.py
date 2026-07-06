@@ -22,7 +22,7 @@ class TestValidation(unittest.TestCase):
 
     def test_valid_amount(self):
         amount, error = validate_amount("150.50")
-        self.assertIsNotNone(amount, 150.50)
+        self.assertEqual(amount, 150.50)
         self.assertIsNone(error)
 
     def test_amount_with_comma(self):

@@ -381,10 +381,9 @@ def deploy_app(manager: FinanceManager,
                     _show_error("La fecha de inicio no puede ser posterior a la fecha fin")
                 else:
                     filtered = manager.filter_by_range(begin_date, end_date)
+                    _update_table(window, manager, filtered)
                     if not filtered:
                         _show_error("No hay movimientos en ese rango de fechas")
-                    else:
-                        _update_table(window, manager, filtered)
 
         elif event == "-VER-TODOS-":
             _update_table(window, manager)
@@ -392,10 +391,10 @@ def deploy_app(manager: FinanceManager,
             window["-FEC-FIN-"].update("")
 
         elif event == "-BTN-CSV-":
-            try:
-                ruta = fn_export(manager)
+            ruta = fn_export(manager)
+            if ruta:
                 _show_ok(f"CSV exportado exitosamente:\n{ruta}")
-            except OSError as e:
-                print(f"Error al guardar: {e}")
+            else:
+                print(f"No se pudo exportar el archivo CSV")
 
     window.close()
