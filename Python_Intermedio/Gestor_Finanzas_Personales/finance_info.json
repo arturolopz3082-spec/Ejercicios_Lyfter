@@ -1,0 +1,35 @@
+{
+  "categories": [
+    {
+      "name": "Divertido",
+      "color": "#3849ff"
+    },
+    {
+      "name": "trabajo",
+      "color": "#00ff00"
+    }
+  ],
+  "movements": [
+    {
+      "title": "trabajo",
+      "amount": 52000.0,
+      "category": "Divertido",
+      "kind": "Ingreso",
+      "movement_date": "02/07/2026"
+    },
+    {
+      "title": "trabajo",
+      "amount": 52000.0,
+      "category": "Divertido",
+      "kind": "Ingreso",
+      "movement_date": "02/07/2026"
+    },
+    {
+      "title": "arros",
+      "amount": -2000.0,
+      "category": "trabajo",
+      "kind": "Gasto",
+      "movement_date": "02/07/2026"
+    }
+  ]
+}
