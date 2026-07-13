@@ -53,7 +53,7 @@ ALTER TABLE Invoices ADD COLUMN CashierEmployeeCode TEXT;
 
 SELECT * From Products;
 
-Select * from Products Where Price = 50000;
+Select * from Products Where Price > 50000;
 
 SELECT
     ipp.InvoiceNumber,
