@@ -1,0 +1,183 @@
+====================================================================
+                    FUNCIONALIDADES DE SELECT EN SQL
+====================================================================
+
+--------------------------------------------------------------------
+1. ORDER BY
+--------------------------------------------------------------------
+
+Descripción:
+Ordena los resultados de una consulta por una o más columnas.
+Por defecto utiliza orden ascendente (ASC), pero también puede
+ordenar de forma descendente (DESC).
+
+Sintaxis:
+
+SELECT columnas
+FROM tabla
+ORDER BY columna ASC;
+
+Ejemplo:
+
+SELECT *
+FROM Products
+ORDER BY Price DESC;
+
+Resultado:
+Muestra los productos ordenados del precio más alto al más bajo.
+
+
+--------------------------------------------------------------------
+2. LIMIT
+--------------------------------------------------------------------
+
+Descripción:
+Limita la cantidad de registros devueltos por una consulta.
+Es útil para mostrar únicamente una cantidad específica de filas.
+
+Sintaxis:
+
+SELECT columnas
+FROM tabla
+LIMIT cantidad;
+
+Ejemplo:
+
+SELECT *
+FROM Products
+LIMIT 5;
+
+Resultado:
+Devuelve únicamente los primeros cinco productos.
+
+
+--------------------------------------------------------------------
+3. GROUP BY
+--------------------------------------------------------------------
+
+Descripción:
+Agrupa registros que poseen el mismo valor en una o más columnas.
+Generalmente se utiliza junto con funciones de agregación como:
+
+- COUNT()
+- SUM()
+- AVG()
+- MIN()
+- MAX()
+
+Sintaxis:
+
+SELECT columna, COUNT(*)
+FROM tabla
+GROUP BY columna;
+
+Ejemplo:
+
+SELECT Category, COUNT(*)
+FROM Products
+GROUP BY Category;
+
+Resultado:
+Muestra la cantidad de productos existentes en cada categoría.
+
+
+--------------------------------------------------------------------
+4. INNER JOIN
+--------------------------------------------------------------------
+
+Descripción:
+Devuelve únicamente los registros que tienen coincidencias en ambas
+tablas.
+
+Sintaxis:
+
+SELECT columnas
+FROM TablaA
+INNER JOIN TablaB
+ON TablaA.Id = TablaB.Id;
+
+Ejemplo:
+
+SELECT Customers.Name, Orders.OrderID
+FROM Customers
+INNER JOIN Orders
+ON Customers.CustomerID = Orders.CustomerID;
+
+Resultado:
+Muestra únicamente los clientes que tienen pedidos registrados.
+
+
+--------------------------------------------------------------------
+5. LEFT JOIN
+--------------------------------------------------------------------
+
+Descripción:
+Devuelve todos los registros de la tabla izquierda y únicamente las
+coincidencias de la tabla derecha. Si no existe coincidencia, los
+campos de la tabla derecha aparecerán como NULL.
+
+Sintaxis:
+
+SELECT columnas
+FROM TablaA
+LEFT JOIN TablaB
+ON TablaA.Id = TablaB.Id;
+
+Ejemplo:
+
+SELECT Customers.Name, Orders.OrderID
+FROM Customers
+LEFT JOIN Orders
+ON Customers.CustomerID = Orders.CustomerID;
+
+Resultado:
+Muestra todos los clientes, incluso aquellos que nunca han realizado
+un pedido.
+
+
+--------------------------------------------------------------------
+6. RIGHT JOIN
+--------------------------------------------------------------------
+
+Descripción:
+Devuelve todos los registros de la tabla derecha y únicamente las
+coincidencias de la tabla izquierda. Si no existe coincidencia, los
+campos de la tabla izquierda aparecerán como NULL.
+
+Nota:
+SQLite no soporta RIGHT JOIN. Para obtener el mismo resultado suele
+invertirse el orden de las tablas y utilizar LEFT JOIN.
+
+Sintaxis:
+
+SELECT columnas
+FROM TablaA
+RIGHT JOIN TablaB
+ON TablaA.Id = TablaB.Id;
+
+Ejemplo:
+
+SELECT Customers.Name, Orders.OrderID
+FROM Customers
+RIGHT JOIN Orders
+ON Customers.CustomerID = Orders.CustomerID;
+
+Resultado:
+Muestra todos los pedidos, incluso si alguno no tiene un cliente
+asociado.
+
+
+====================================================================
+                         RESUMEN
+====================================================================
+
++--------------+-----------------------------------------------------+
+| Función      | Descripción                                         |
++--------------+-----------------------------------------------------+
+| ORDER BY     | Ordena los resultados de una consulta.              |
+| LIMIT        | Limita el número de filas devueltas.                |
+| GROUP BY     | Agrupa registros para realizar cálculos.            |
+| INNER JOIN   | Muestra únicamente registros relacionados.          |
+| LEFT JOIN    | Muestra todos los registros de la tabla izquierda.  |
+| RIGHT JOIN   | Muestra todos los registros de la tabla derecha.    |
++--------------+-----------------------------------------------------+
