@@ -70,23 +70,70 @@ INSERT INTO Rents (BookID, CustomerID, State) VALUES
 (3, 1, 'On time'),
 (2, 2, 'Overdue');
 
----Obtenga todos los libros y sus autores (en caso de tenerlos)
-select * from books join authors on books.AuthorId = Authors.ID;
+-- Obtenga todos los libros y sus autores, en caso de tenerlos
+SELECT
+    b.ID,
+    b.Name AS BookName,
+    a.Name AS AuthorName
+FROM Books AS b
+LEFT JOIN Authors AS a
+    ON b.AuthorID = a.ID;
 
---Obtenga todos los libros que no tiene autor
-SELECT * FROM books WHERE AuthorID IS NULL;
 
---Obtenga todos los autores que no tienen libro
-SELECT * FROM authors LEFT JOIN books ON Authors.ID = books.AuthorID WHERE books.AuthorID IS NULL;
+-- Obtenga todos los libros que no tienen autor
+SELECT *
+FROM Books
+WHERE AuthorID IS NULL;
 
---Obtenga todos los libros que han sido rentados en algún momento
-SELECT * FROM books JOIN rents ON books.id = rents.BookID;
 
---Obtenga todos los libros que nunca han sido rentados
-SELECT * FROM Books as b LEFT JOIN Rents as r ON b.id = r.BookID WHERE r.BookID IS NULL;
+-- Obtenga todos los autores que no tienen libro
+SELECT
+    a.ID,
+    a.Name
+FROM Authors AS a
+LEFT JOIN Books AS b
+    ON a.ID = b.AuthorID
+WHERE b.AuthorID IS NULL;
 
---Obtenga todos los clientes que nunca han rentado un libro
-SELECT * FROM Customers AS c LEFT JOIN Rents as r ON c.id = r.CustomerID WHERE r.CustomerID IS NULL;
 
---Obtenga todos los libros que han sido rentados y están en estado overdue
-SELECT * FROM Books AS B JOIN Rents as R ON B.id = R.CustomerID WHERE State = 'Overdue';
+-- Obtenga todos los libros que han sido rentados en algún momento
+SELECT DISTINCT
+    b.ID,
+    b.Name,
+    b.AuthorID
+FROM Books AS b
+INNER JOIN Rents AS r
+    ON b.ID = r.BookID;
+
+
+-- Obtenga todos los libros que nunca han sido rentados
+SELECT
+    b.ID,
+    b.Name,
+    b.AuthorID
+FROM Books AS b
+LEFT JOIN Rents AS r
+    ON b.ID = r.BookID
+WHERE r.BookID IS NULL;
+
+
+-- Obtenga todos los clientes que nunca han rentado un libro
+SELECT
+    c.ID,
+    c.Name,
+    c.Email
+FROM Customers AS c
+LEFT JOIN Rents AS r
+    ON c.ID = r.CustomerID
+WHERE r.CustomerID IS NULL;
+
+
+-- Obtenga todos los libros que han sido rentados y están en estado overdue
+SELECT
+    b.ID,
+    b.Name,
+    r.State
+FROM Books AS b
+INNER JOIN Rents AS r
+    ON b.ID = r.BookID
+WHERE r.State = 'Overdue';
