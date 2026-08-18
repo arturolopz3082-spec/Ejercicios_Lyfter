@@ -1,0 +1,38 @@
+[
+    {
+        "Identificador": 1,
+        "Titulo": "Estudiar Flask",
+        "Descripcion": "Crear una API",
+        "Estado": "Por Hacer"
+    },
+    {
+        "Identificador": 2,
+        "Titulo": "Probar en Postman",
+        "Descripcion": "Probar los endpoints",
+        "Estado": "En Progreso"
+    },
+    {
+        "Identificador": 3,
+        "Titulo": "Postear una tarea",
+        "Descripcion": "Postear una API",
+        "Estado": "Por Hacer"
+    },
+    {
+        "Identificador": 4,
+        "Titulo": "Postear una tarea",
+        "Descripcion": "Postear una Tarea",
+        "Estado": "Por Hacer"
+    },
+    {
+        "Identificador": 5,
+        "Titulo": "Tarea repetida",
+        "Descripcion": "Tarea Repetida",
+        "Estado": "Por Hacer"
+    },
+    {
+        "Identificador": 6,
+        "Titulo": "",
+        "Descripcion": "Tarea Repetida",
+        "Estado": "Por Hacer"
+    }
+]
