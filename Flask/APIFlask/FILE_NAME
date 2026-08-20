@@ -1,38 +1,38 @@
 [
     {
-        "Identificador": 1,
-        "Titulo": "Estudiar Flask",
-        "Descripcion": "Crear una API",
-        "Estado": "Por Hacer"
+        "id": 1,
+        "title": "Estudiar Flask",
+        "description": "Crear una API",
+        "status": "TO DO"
     },
     {
-        "Identificador": 2,
-        "Titulo": "Probar en Postman",
-        "Descripcion": "Probar los endpoints",
-        "Estado": "En Progreso"
+        "id": 2,
+        "title": "Probar en Postman",
+        "description": "Probar los endpoints",
+        "status": "IN PROGRESS"
     },
     {
-        "Identificador": 3,
-        "Titulo": "Postear una tarea",
-        "Descripcion": "Postear una API",
-        "Estado": "Por Hacer"
+        "id": 3,
+        "title": "Postear una tarea",
+        "description": "Postear una API",
+        "status": "TO DO"
     },
     {
-        "Identificador": 4,
-        "Titulo": "Postear una tarea",
-        "Descripcion": "Postear una Tarea",
-        "Estado": "Por Hacer"
+        "id": 4,
+        "title": "Postear una tarea",
+        "description": "Postear una Tarea",
+        "status": "TO DO"
     },
     {
-        "Identificador": 5,
-        "Titulo": "Tarea repetida",
-        "Descripcion": "Tarea Repetida",
-        "Estado": "Por Hacer"
+        "id": 5,
+        "title": "Tarea repetida",
+        "description": "Tarea Repetida",
+        "status": "TO DO"
     },
     {
-        "Identificador": 6,
-        "Titulo": "",
-        "Descripcion": "Tarea Repetida",
-        "Estado": "Por Hacer"
+        "id": 6,
+        "title": "",
+        "description": "Tarea Repetida",
+        "status": "TO DO"
     }
 ]
