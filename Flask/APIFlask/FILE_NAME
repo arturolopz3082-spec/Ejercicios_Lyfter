@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "title": "Estudiar Flask",
+        "description": "Crear una API",
+        "status": "TO DO"
+    },
+    {
+        "id": 2,
+        "title": "Probar en Postman",
+        "description": "Probar los endpoints",
+        "status": "IN PROGRESS"
+    },
+    {
+        "id": 3,
+        "title": "Postear una tarea",
+        "description": "Postear una API",
+        "status": "TO DO"
+    },
+    {
+        "id": 4,
+        "title": "Postear una tarea",
+        "description": "Postear una Tarea",
+        "status": "TO DO"
+    },
+    {
+        "id": 5,
+        "title": "Tarea repetida",
+        "description": "Tarea Repetida",
+        "status": "TO DO"
+    },
+    {
+        "id": 6,
+        "title": "",
+        "description": "Tarea Repetida",
+        "status": "TO DO"
+    }
+]
